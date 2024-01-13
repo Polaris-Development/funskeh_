@@ -1,0 +1,5 @@
+- /verify (user) (cross) (trans) (gf_nb) (male_or_female)
+    - Gives corresponding roles based on input
+    - If verified, sends a message to general channel and log channel
+- /idverification - Sends a custom embed
+- /crossverification - Sends a custom embed

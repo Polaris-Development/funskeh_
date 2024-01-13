@@ -39,25 +39,6 @@ client.pool = None
 async def main():
     async with client:
 
-        # user = os.getenv('DATABASE_USER')
-        # database = os.getenv('DATABASE_DATABASE')
-        # password = os.getenv('DATABASE_PASSWORD')
-        
-        # client.pool = await asyncpg.create_pool(
-        #     host="localhost",
-        #     database=database,
-        #     user=user,
-        #     password=password,
-        #     min_size=10,
-        #     max_size=2000,
-        #     command_timeout=20)
-        # print("Database opened!")
-
-        # await client.pool.execute(
-        #     '''CREATE TABLE IF NOT EXISTS players (
-        #         id BIGINT
-        # );''')
-
         try:
             await client.start(discord_token)
         except Exception as e:
