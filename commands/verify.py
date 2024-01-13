@@ -57,7 +57,7 @@ class Verify(commands.Cog):
             title=f"Welcome to {interaction.guild.name}", 
             description=(
                 f"{user.mention} is now verified! Let's welcome them!\n\n"
-                f"Feel free to explore the server and if you haven't select some roles in <#881701916626587136>!\nEnjoy"
+                f"Feel free to explore the server and if you haven't select some roles in <#1135880320839856258> <#1135880338275577968> <#1135880400812646410>!\nEnjoy"
             ), 
             color=0xe681c7
         )
@@ -88,10 +88,21 @@ class Verify(commands.Cog):
     @app_commands.command(description="ID Verification Embed!")
     async def idverification(self, interaction):
         embed = discord.Embed(
-            title="ID Verification", 
+            title="How to ID verify!", 
             description=(
-                "Please send a picture of your ID in <#881701916626587136>.\n"
-                "If you are not comfortable with that, please DM a staff member."
+                "Open a ticket <#1065352947359305738>.\n"
+                ""
+                "1 | Send a selfie of you and your Identification.."
+                "2 | Write down the server name + todays date on a piece of paper together with your id."
+                "3 | Then a selfie of you holding the id or the paper. After confirmed from staff you can delete your pictures!"
+                ""
+                "Make sure all the sensitive information is blurred over except date of birth and your picture."
+                "No filters, emotes etc. We need clear pictures!"
+                "We will not force verify you. Verifying is optional but to stay in our server you gotta prove you are above the age of 18. The server is 18+ and you know it while joining."
+                "If we suspect you are under the age of 18 we have the right to kick or ban you. Note that staff can ask for more pictures if we are suspicious of you being under age."
+                ""
+                "MAKE SURE YOU HAVE SELECTED <#1135880320839856258>.\n"
+                "Other options of verification is <#1065352876664307773>.\n"
             ), 
             color=0xe681c7
         )
