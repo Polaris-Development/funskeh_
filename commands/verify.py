@@ -25,7 +25,7 @@ class Verify(commands.Cog):
         admin_role = interaction.guild.get_role(ADMIN_ROLE)
         if admin_role not in interaction.user.roles:
             embed = discord.Embed(description=":x: This is an admin only command!", color=discord.colour.Colour.red())
-            return await interaction.response.send_message(embed=embed)
+            return await interaction.followup.send(embed=embed)
         
         WELCOME_ROLE = int(os.getenv("WELCOME_ROLE"))
         WELCOME_CHANNEL = int(os.getenv("WELCOME_CHANNEL"))
@@ -37,19 +37,36 @@ class Verify(commands.Cog):
         MALE_ROLE = int(os.getenv("MALE_ROLE"))
         FEMALE_ROLE = int(os.getenv("FEMALE_ROLE"))
 
-
         # Give user roles
-        await user.add_roles(interaction.guild.get_role(VERIFIED_ROLE))
+        try:
+            await user.add_roles(interaction.guild.get_role(VERIFIED_ROLE))
+        except Exception:
+            return await interaction.followup.send("Invalid verified role id!")
         if cross == "Yes":
-            await user.add_roles(interaction.guild.get_role(CROSS_ROLE))
+            try:
+                await user.add_roles(interaction.guild.get_role(CROSS_ROLE))
+            except Exception:
+                return await interaction.followup.send("Invalid cross role id!")
         if trans == "Yes":
-            await user.add_roles(interaction.guild.get_role(TRANS_ROLE))
+            try:
+                await user.add_roles(interaction.guild.get_role(TRANS_ROLE))
+            except Exception:
+                return await interaction.followup.send("Invalid trans role id!")
         if gf_nb == "Yes":
-            await user.add_roles(interaction.guild.get_role(GF_NB_ROLE))
+            try:
+                await user.add_roles(interaction.guild.get_role(GF_NB_ROLE))
+            except Exception:
+                return await interaction.followup.send("Invalid gf_nb role id!")
         if male_or_female == "Male":
-            await user.add_roles(interaction.guild.get_role(MALE_ROLE))
+            try:
+                await user.add_roles(interaction.guild.get_role(MALE_ROLE))
+            except Exception:
+                return await interaction.followup.send("Invalid male role id!")
         if male_or_female == "Female":
-            await user.add_roles(interaction.guild.get_role(FEMALE_ROLE))
+            try:
+                await user.add_roles(interaction.guild.get_role(FEMALE_ROLE))
+            except Exception:
+                return await interaction.followup.send("Invalid female role id!")
 
         # Welcome Message
         welcome_channel = self.client.get_channel(WELCOME_CHANNEL)

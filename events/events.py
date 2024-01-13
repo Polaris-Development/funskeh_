@@ -46,7 +46,10 @@ class Events(commands.Cog):
         else:
             embedVar = discord.Embed(title="An Error Occurred <:warning:919782406649700352>", description = "The error has been reported to staff.\nSorry for the inconvenience!", color=0xfbff00)
             embedVar.set_footer(text=f"RPG")
-            await interaction.response.send_message(embed=embedVar)
+            try:
+                await interaction.response.send_message(embed=embedVar)
+            except Exception:
+                await interaction.followup.send(embed=embedVar)
         
             tb = ''.join(traceback.format_exception(type(error), error, error.__traceback__))
             pages = TextPageSource(tb, max_size=1000).pages # paginates so it fits in a message
