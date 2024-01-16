@@ -1,5 +1,21 @@
-- /verify (user) (cross) (trans) (gf_nb) (male_or_female)
+✓ - /verify (user) (cross) (trans) (gf_nb) (male_or_female)
     - Gives corresponding roles based on input
     - If verified, sends a message to general channel and log channel
-- /idverification - Sends a custom embed
-- /crossverification - Sends a custom embed
+✓ - /idverification - Sends a custom embed
+✓ - /crossverification - Sends a custom embed
+
+
+✓ - python command
+✓ *warn (dms reason)
+✓ *warnings (warnlist)
+✓ *ban (dms reason)
+✓ *banlist
+✓ *kick (dms reason)
+✓ *whois
+✓ *timeout (dms reason)
+✓ *temprole
+✓ *steal/add emojis
+
+
+Logs for:
+✓ *warn

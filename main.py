@@ -38,7 +38,47 @@ client.pool = None
 
 async def main():
     async with client:
+        
+        user = os.getenv('DATABASE_USER')
+        database = os.getenv('DATABASE_DATABASE')
+        password = os.getenv('DATABASE_PASSWORD')
+        
+        client.pool = await asyncpg.create_pool(
+            host="localhost",
+            database=database,
+            user=user,
+            password=password,
+            min_size=10,
+            max_size=2000,
+            command_timeout=20)
+        print("Database opened!")
 
+        # If database change, must add idleminer database before running
+        await client.pool.execute(
+            '''CREATE TABLE IF NOT EXISTS warnings (
+                userid BIGINT,
+                staffid BIGINT,
+                reason TEXT,
+                time BIGINT
+            );''')
+        
+        await client.pool.execute(
+            '''CREATE TABLE IF NOT EXISTS temproles (
+                userid BIGINT,
+                staffid BIGINT,
+                roleid BIGINT,
+                expire_time BIGINT,
+                guildid BIGINT
+            );''')
+        
+        await client.pool.execute(
+            '''CREATE TABLE IF NOT EXISTS banlist (
+                userid BIGINT,
+                staffid BIGINT,
+                reason TEXT,
+                time BIGINT
+            );''')
+        
         try:
             await client.start(discord_token)
         except Exception as e:
