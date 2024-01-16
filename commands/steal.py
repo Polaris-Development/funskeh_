@@ -34,23 +34,13 @@ class Steal(commands.Cog):
     @app_commands.command(description="Steal Emoji Command!")
     async def steal(self, interaction, emoji: str):
         await interaction.response.defer()
-
         try:
-            print
-            print(emoji)
-            # Example: <:crown:1196840025145479231>
             emoji_id = int(emoji.split(":")[2][:-1])
-            print(emoji_id)
             emoji = self.client.get_emoji(emoji_id)
-            print(emoji.url)
             await interaction.followup.send(emoji.url)
-
-
-
         except Exception:
             embed = discord.Embed(description=":x: Invalid emoji!", color=discord.colour.Colour.red())
             return await interaction.followup.send(embed=embed)
-
 
 async def setup(client):
     await client.add_cog(Steal(client))

@@ -40,7 +40,6 @@ class Kick(commands.Cog):
             embed = discord.Embed(description=":x: This is an admin only command!", color=discord.colour.Colour.red())
             return await interaction.followup.send(embed=embed)
         
-        # Kick User
         try:
             try:
                 embed = discord.Embed(description=f"You have been kicked from {interaction.guild.name} for {reason}!", color=discord.colour.Colour.red())
