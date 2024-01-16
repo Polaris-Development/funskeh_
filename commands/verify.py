@@ -36,10 +36,27 @@ class Verify(commands.Cog):
         GF_NB_ROLE = int(os.getenv("GF_NB_ROLE"))
         MALE_ROLE = int(os.getenv("MALE_ROLE"))
         FEMALE_ROLE = int(os.getenv("FEMALE_ROLE"))
+        TEMP_ROLE = int(os.getenv("TEMP_ROLE"))
 
         # Give user roles
         try:
             await user.add_roles(interaction.guild.get_role(VERIFIED_ROLE))
+
+            
+            # Give user a role and place in database
+            times = convert_time("48h") + time.time()
+            try:
+                temp_role = interaction.guild.get_role(TEMP_ROLE)
+                await user.add_roles(temp_role)
+                await self.client.pool.execute("INSERT INTO temproles VALUES ($1, $2, $3, $4, $5)", user.id, interaction.user.id, temp_role.id, times, interaction.guild.id)
+
+            except discord.Forbidden:
+                embed = discord.Embed(description=":x: I don't have permission to give members roles!", color=discord.colour.Colour.red())
+                await interaction.followup.send(embed=embed)
+            except discord.HTTPException:
+                embed = discord.Embed(description=":x: An error occurred while trying to give the member a role!", color=discord.colour.Colour.red())
+                await interaction.followup.send(embed=embed)
+
         except Exception:
             return await interaction.followup.send("Invalid verified role id!")
         if cross == "Yes":
